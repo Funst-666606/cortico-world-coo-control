@@ -9,12 +9,13 @@
  * The script:
  *  1. refuses a version that is already on the registry;
  *  2. regenerates describe.json and runs the test suite (unless --skip-tests);
- *  3. prompts for an OTP when run in a terminal and none was passed;
+ *  3. when no OTP is passed, lets npm run its browser 2FA flow in a terminal
+ *     (or prompts for the OTP itself); a non-TTY run must pass --otp / NPM_OTP;
  *  4. runs `npm publish --access public`;
  *  5. prints the npm page and a ready-made market-sync issue URL.
  *
- * It does not create the GitHub sync issue itself: that needs a GitHub token and
- * the maintainers' repository, so it is left to a deliberate click.
+ * The browser flow means you do not need to find a 6-digit code: npm opens its
+ * auth URL and waits for you to approve with the account's password/security key.
  *
  * Options:
  *   --otp <code>        npm one-time password (or NPM_OTP env)
@@ -26,7 +27,6 @@
  */
 import { spawnSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
-import { createInterface } from 'node:readline/promises';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -35,6 +35,7 @@ const args = process.argv.slice(2);
 
 const usage = () => {
   console.log(`usage: node scripts/publish.mjs [--otp 123456] [--tag latest] [--access public] [--dry-run] [--skip-tests]`);
+  console.log('Without --otp, run it in a terminal: npm opens its browser 2FA flow.');
 };
 
 let otp = process.env.NPM_OTP || '';
@@ -121,17 +122,11 @@ if (!skipTests) {
 
 if (!dryRun && !otp) {
   if (!process.stdin.isTTY) {
-    console.error('npm needs a 6-digit OTP, and this is not a terminal.');
-    console.error('pass --otp <code>, set NPM_OTP, or run the script from a terminal.');
+    console.error('npm 2FA needs an interactive terminal for its browser flow.');
+    console.error('run this from a terminal, or pass --otp <code>, or set NPM_OTP.');
     process.exit(6);
   }
-  const rl = createInterface({ input: process.stdin, output: process.stdout });
-  otp = (await rl.question('npm 6-digit OTP: ')).trim();
-  rl.close();
-  if (!/^\d{6,8}$/.test(otp)) {
-    console.error('OTP must be 6–8 digits');
-    process.exit(6);
-  }
+  console.log('No OTP passed: npm will open its browser 2FA flow here (or prompt for an OTP).');
 }
 
 const publishArgs = ['publish', '--access', access, '--tag', tag];
