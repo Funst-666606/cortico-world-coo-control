@@ -1,0 +1,125 @@
+{
+  "tools": [
+    {
+      "name": "coo_control_status",
+      "description": "Report whether the Coo Control behaviour patch is applied: Coopanion and desktop-pet versions, the state of body.js and pet-app.js, the backup location, the current preset, whether the AI may edit it, and the last error. Read-only.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "tags": [
+        "read"
+      ],
+      "summary": {
+        "zh": "查看控制权回交是否生效：Coopanion/桌宠版本、两个补丁文件的状态、备份位置、当前预设和上次错误。",
+        "en": "Reports whether Coo Control is in effect: app and desktop-pet versions, both patched files, backups, the current preset and the last error."
+      }
+    },
+    {
+      "name": "coo_control_get",
+      "description": "Return the current behaviour policy as JSON: idle action and face weights, click and petting face weights, hop/sit-sleep chances, and whether heart particles are allowed. Read-only; use the keys in this JSON with coo_control_set.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "tags": [
+        "read"
+      ],
+      "summary": {
+        "zh": "读取当前行为策略：待机动作/表情权重、点击/摸头表情权重、跳跃/睡着概率、是否允许爱心。",
+        "en": "Returns the current behaviour policy: idle action and face weights, click and petting face weights, hop/sit-sleep chances and the heart setting."
+      }
+    },
+    {
+      "name": "coo_control_set",
+      "description": "Change how the pet body reacts by default. A preset (expressive, reserved, cold, custom) is the quick way; overrides are flat policy keys from coo_control_get, each 0–100 (0 disables). Overrides switch the preset to custom. The change is written to the running pet within about two seconds; no restart. Only allowed while the user keeps \"Allow the AI to change it\" on; ask with pet_ask first unless the user already asked for a specific change.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "preset": {
+            "type": "string",
+            "enum": [
+              "expressive",
+              "reserved",
+              "cold",
+              "custom"
+            ],
+            "description": "expressive = stock; reserved = no hearts on click, shy when petted; cold = neutral/surprised/angry, no hearts; custom = use the overrides / saved custom weights."
+          },
+          "overrides": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "description": "Flat policy keys from coo_control_get, e.g. {\"pokeLove\":0,\"petShy\":100,\"idleLove\":0,\"pokeHop\":20}. Each is 0–100; 0 disables."
+          },
+          "hearts": {
+            "type": "boolean",
+            "description": "Whether the \"love\" face may emit heart particles. Defaults to the preset/custom setting when omitted."
+          }
+        },
+        "required": []
+      },
+      "tags": [
+        "act"
+      ],
+      "summary": {
+        "zh": "修改桌宠默认行为：用预设（活泼/内敛/高冷/自定义）或按 coo_control_get 的键给 0–100 权重；约两秒内生效，无需重启。",
+        "en": "Changes the default behaviour by preset or by 0–100 weights on coo_control_get keys; applies in about two seconds without a restart."
+      }
+    },
+    {
+      "name": "coo_control_reset",
+      "description": "Reset the behaviour policy to the stock expressive preset and clear the custom weights. The change is written to the running pet within about two seconds; no restart.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "tags": [
+        "act"
+      ],
+      "summary": {
+        "zh": "恢复原版「活泼」预设，清空自定义权重；约两秒内生效。",
+        "en": "Restores the stock expressive preset and clears custom weights; applies in about two seconds."
+      }
+    },
+    {
+      "name": "coo_control_apply",
+      "description": "Re-apply the Coo Control patch to the installed desktop-pet files. Idempotent; writes backups first; refuses unknown code instead of guessing. Use after a Coopanion update, or when auto-apply is off. If the pet window is already running, restart Coopanion afterwards.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "tags": [
+        "act"
+      ],
+      "summary": {
+        "zh": "给当前安装的 Coopanion 重打行为补丁：先备份、可重复执行；不认识的新代码会拒绝。更新 Coopanion 后用它。",
+        "en": "Re-applies the behaviour patch to the installed Coopanion; backs up first, idempotent, refuses unknown code. Use after a Coopanion update."
+      }
+    },
+    {
+      "name": "coo_control_restore",
+      "description": "Restore body.js and pet-app.js from the backups this extension made and remove the generated policy file, undoing the patch. Refuses when the current files no longer match what this extension wrote. Restart Coopanion afterwards.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "tags": [
+        "act"
+      ],
+      "summary": {
+        "zh": "用本扩展的备份还原 body.js / pet-app.js 并删掉策略文件，撤销补丁；当前文件对不上时拒绝覆盖；之后重启 Coopanion。",
+        "en": "Restores body.js and pet-app.js from this extension’s backups, removes the generated policy, and refuses when the files no longer match; restart Coopanion afterwards."
+      }
+    }
+  ],
+  "events": []
+}

@@ -1,0 +1,72 @@
+{
+  "name": "cortico-world-coo-control",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "控制权回交：让 Coopanion 桌宠的点击、摸头与待机默认行为按人设/用户概率策略执行，并给 AI 读写策略的工具。A Cortico World that patches the installed desktop-pet body with a hot-reloadable behavior policy, backups, restore and a safe update path. 作者 funst，QQ 2674459204。",
+  "author": {
+    "name": "funst",
+    "email": "2674459204@qq.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Funst-666606/cortico-world-coo-control.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Funst-666606/cortico-world-coo-control/issues"
+  },
+  "homepage": "https://github.com/Funst-666606/cortico-world-coo-control#readme",
+  "os": [
+    "win32"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "main": "./src/index.js",
+  "keywords": [
+    "cortico-world",
+    "cortico",
+    "coopanion",
+    "desktop-pet",
+    "behavior",
+    "persona",
+    "mod"
+  ],
+  "cortico": {
+    "kind": "world",
+    "api": 6,
+    "displayName": "控制权回交（Coo Control）",
+    "locales": {
+      "zh": {
+        "displayName": "控制权回交",
+        "description": "让桌宠的点击、摸头与待机默认行为按人设和用户设定的概率执行；AI 可经同意调整策略。会修改已安装的 Coopanion 桌宠 body.js（先备份、可还原），更新后自动重打；不匹配的新代码会拒绝而不是猜。作者 funst，QQ 2674459204，MIT 协议。"
+      },
+      "en": {
+        "displayName": "Coo Control",
+        "description": "Makes the desktop pet's default click, petting and idle behaviour follow a persona/user probability policy, with tools for the AI to read and change it. Patches the installed Coopanion desktop-pet body.js with backups, restore and auto re-apply after app updates; unknown code is refused rather than guessed. Author: funst (QQ 2674459204), MIT."
+      }
+    },
+    "describe": "describe.json",
+    "tags": [
+      "experimental",
+      "apps",
+      "companion"
+    ],
+    "icon": "src/icon.svg"
+  },
+  "files": [
+    "src",
+    "scripts",
+    "test",
+    "describe.json",
+    "README.md",
+    "IMPLEMENTATION.md",
+    "PUBLISHING.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/policy.test.mjs && node test/patch.test.mjs && node test/engine.test.mjs && node test/world.test.mjs",
+    "build:describe": "node scripts/write-describe.mjs"
+  }
+}
