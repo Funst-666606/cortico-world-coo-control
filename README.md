@@ -164,6 +164,8 @@ npm run release
 npm run release -- --otp 123456
 ```
 
+On Windows you can also double-click **`publish.cmd`** in this folder: it opens a terminal, runs the same command, and pauses when done.
+
 The release script refuses an already-published version, regenerates `describe.json`, runs the tests, lets npm run its browser 2FA flow (or takes `--otp` / `NPM_OTP`), publishes with `--access public`, and prints the npm page plus a ready-made market-sync issue URL.
 
 ## License
