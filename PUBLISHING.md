@@ -1,6 +1,12 @@
 # Publishing Coo Control
 
-**First release:** `cortico-world-coo-control@0.1.0` on npm, by **funst**. Source: https://github.com/Funst-666606/cortico-world-coo-control
+**Published:** `cortico-world-coo-control@0.1.0` on npm, 2026-10-27, by **funst**.
+
+- npm: https://www.npmjs.com/package/cortico-world-coo-control
+- source: https://github.com/Funst-666606/cortico-world-coo-control
+- market sync: https://github.com/Pal-AI-Lab/cortico-extensions/issues/351
+
+`0.0.0-stage` in the registry is npm's normal placeholder for a package first published through staged publishing; `latest` is `0.1.0`. The sync issue above asks the market index to pick it up.
 
 ## 1. Publish to npm
 
