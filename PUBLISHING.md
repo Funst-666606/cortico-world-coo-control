@@ -8,10 +8,12 @@ From this directory:
 
 ```bash
 npm login
+npm run release
+# non-interactive, or if the browser flow is unavailable:
 npm run release -- --otp 123456
 ```
 
-`npm run release` runs `scripts/publish.mjs`. It refuses an already-published version, regenerates `describe.json`, runs the tests, asks for the OTP when run from a terminal (or takes `--otp` / `NPM_OTP`), publishes with `--access public`, and prints the npm page and the market-sync issue URL.
+`npm run release` runs `scripts/publish.mjs`. It refuses an already-published version, regenerates `describe.json`, runs the tests, lets npm run its browser 2FA flow (or takes `--otp` / `NPM_OTP`), publishes with `--access public`, and prints the npm page and the market-sync issue URL.
 
 For a dry run:
 
