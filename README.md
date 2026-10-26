@@ -156,12 +156,15 @@ node scripts/write-describe.mjs
 
 ```bash
 node scripts/publish.mjs --dry-run
-node scripts/publish.mjs --otp 123456
-# or, from the terminal where npm can prompt:
+
+# run in a terminal: npm opens its browser 2FA flow, no 6-digit code to find
 npm run release
+
+# non-interactive, or if the browser flow is unavailable:
+npm run release -- --otp 123456
 ```
 
-The release script refuses an already-published version, regenerates `describe.json`, runs the tests, prompts for the npm OTP (or takes `--otp` / `NPM_OTP`), publishes with `--access public`, and prints the npm page plus a ready-made market-sync issue URL.
+The release script refuses an already-published version, regenerates `describe.json`, runs the tests, lets npm run its browser 2FA flow (or takes `--otp` / `NPM_OTP`), publishes with `--access public`, and prints the npm page plus a ready-made market-sync issue URL.
 
 ## License
 
