@@ -63,7 +63,8 @@
     "IMPLEMENTATION.md",
     "PUBLISHING.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "publish.cmd"
   ],
   "scripts": {
     "test": "node test/policy.test.mjs && node test/patch.test.mjs && node test/engine.test.mjs && node test/world.test.mjs",
