@@ -15,6 +15,8 @@ npm run release -- --otp 123456
 
 `npm run release` runs `scripts/publish.mjs`. It refuses an already-published version, regenerates `describe.json`, runs the tests, lets npm run its browser 2FA flow (or takes `--otp` / `NPM_OTP`), publishes with `--access public`, and prints the npm page and the market-sync issue URL.
 
+On Windows, **double-clicking `publish.cmd`** opens a terminal and runs the same command; the browser 2FA flow does not need a 6-digit code.
+
 For a dry run:
 
 ```bash
