@@ -8,7 +8,7 @@ A **Cortico World** for [Coopanion](https://github.com/Pal-AI-Lab/Coopanion) tha
 >
 > 状态：实验性、仅 Windows，并且会**修改已安装的 Coopanion 桌宠文件**（`body.js`、`pet-app.js`），带备份、还原和更新兼容路径。这不是 Pal AI Lab 官方扩展。
 
-**作者 / Author:** funst（QQ **2674459204**） · **License:** MIT · **源码 / Source:** [Funst-666606/cortico-world-coo-control](https://github.com/Funst-666606/cortico-world-coo-control) · **npm:** `cortico-world-coo-control`
+**作者 / Author:** funst（QQ **2674459204**） · **License:** MIT · **源码 / Source:** [Funst-666606/cortico-world-coo-control](https://github.com/Funst-666606/cortico-world-coo-control) · **npm:** [cortico-world-coo-control](https://www.npmjs.com/package/cortico-world-coo-control)
 
 **标签 / Tags:** `experimental`、`apps`、`companion`
 
