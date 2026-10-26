@@ -1,6 +1,6 @@
 # Publishing Coo Control
 
-**Planned first release:** `cortico-world-coo-control@0.1.0` on npm, by **funst**.
+**First release:** `cortico-world-coo-control@0.1.0` on npm, by **funst**. Source: https://github.com/Funst-666606/cortico-world-coo-control
 
 ## 1. Publish to npm
 
@@ -8,7 +8,15 @@ From this directory:
 
 ```bash
 npm login
-npm publish --access public
+npm run release -- --otp 123456
+```
+
+`npm run release` runs `scripts/publish.mjs`. It refuses an already-published version, regenerates `describe.json`, runs the tests, asks for the OTP when run from a terminal (or takes `--otp` / `NPM_OTP`), publishes with `--access public`, and prints the npm page and the market-sync issue URL.
+
+For a dry run:
+
+```bash
+node scripts/publish.mjs --dry-run
 ```
 
 `package.json` already carries:

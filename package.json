@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Funst-666606/cortico-world-coo-control.git"
+    "url": "git+https://github.com/Funst-666606/cortico-world-coo-control.git"
   },
   "bugs": {
     "url": "https://github.com/Funst-666606/cortico-world-coo-control/issues"
@@ -67,6 +67,7 @@
   ],
   "scripts": {
     "test": "node test/policy.test.mjs && node test/patch.test.mjs && node test/engine.test.mjs && node test/world.test.mjs",
-    "build:describe": "node scripts/write-describe.mjs"
+    "build:describe": "node scripts/write-describe.mjs",
+    "release": "node scripts/publish.mjs"
   }
 }

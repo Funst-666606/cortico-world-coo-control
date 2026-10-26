@@ -8,7 +8,7 @@ A **Cortico World** for [Coopanion](https://github.com/Pal-AI-Lab/Coopanion) tha
 >
 > 状态：实验性、仅 Windows，并且会**修改已安装的 Coopanion 桌宠文件**（`body.js`、`pet-app.js`），带备份、还原和更新兼容路径。这不是 Pal AI Lab 官方扩展。
 
-**作者 / Author:** funst（QQ **2674459204**） · **License:** MIT · **源码 / Source:** [Funst-666606/cortico-world-coo-control](https://github.com/Funst-666606/cortico-world-coo-control) · **npm 包名:** `cortico-world-coo-control`（待发布）
+**作者 / Author:** funst（QQ **2674459204**） · **License:** MIT · **源码 / Source:** [Funst-666606/cortico-world-coo-control](https://github.com/Funst-666606/cortico-world-coo-control) · **npm:** `cortico-world-coo-control`
 
 **标签 / Tags:** `experimental`、`apps`、`companion`
 
@@ -84,7 +84,7 @@ A **Cortico World** for [Coopanion](https://github.com/Pal-AI-Lab/Coopanion) tha
 
 ## Install
 
-### From npm / the extension market（发布后）
+### From npm / the extension market
 
 Search for **控制权回交 / Coo Control** (package `cortico-world-coo-control`) in Coopanion's extension page, or:
 
@@ -151,6 +151,17 @@ node scripts/write-describe.mjs
 ```
 
 `patch.test.mjs` 默认用内置 fixture；把 `COOPANION_APP_ROOT` 指向真实的 `resources/app`，它会复制真实文件再 apply/restore，用来在新 Coopanion 版本上做发布前验证。
+
+### Release
+
+```bash
+node scripts/publish.mjs --dry-run
+node scripts/publish.mjs --otp 123456
+# or, from the terminal where npm can prompt:
+npm run release
+```
+
+The release script refuses an already-published version, regenerates `describe.json`, runs the tests, prompts for the npm OTP (or takes `--otp` / `NPM_OTP`), publishes with `--access public`, and prints the npm page plus a ready-made market-sync issue URL.
 
 ## License
 
